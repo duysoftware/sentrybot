@@ -23,17 +23,4 @@ public class SoundSensorTest {
 			assert(true);
 		}
 	}
-	
-	@Test
-	public void testTrigger() {
-		if (System.getProperty("os.name").equals("Linux")) {
-			SoundSensor testSensors = new SoundSensor(RaspiPin.GPIO_02);
-			testSensors.testSensor();
-			
-			assertEquals(true, testSensors.querySensors());
-		} else {	
-			
-			assert(true);
-		}
-	}
 }
