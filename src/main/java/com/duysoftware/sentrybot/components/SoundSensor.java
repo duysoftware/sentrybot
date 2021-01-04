@@ -66,4 +66,8 @@ public final class SoundSensor extends AbstractComponent {
 	public boolean querySensors() {
 		return detected;
 	}
+	
+	public void testSensor() {
+		input.getListeners().notifyAll();
+	}
 }
