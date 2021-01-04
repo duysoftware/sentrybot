@@ -44,6 +44,8 @@ public class Speaker extends AbstractComponent {
 			setSuccessStatus(true);
 		} 
 		catch (Exception e) {
+			File current = new File(".");
+			System.out.printf("%nCurrentLocation is: %s %n%n", current.getAbsolutePath());
 			e.printStackTrace(System.out);
 		}
 	}
