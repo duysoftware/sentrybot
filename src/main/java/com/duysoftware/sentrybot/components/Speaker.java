@@ -5,6 +5,12 @@ import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+/**
+ * Class that can play .wav audio files.
+ * @author Duy N
+ * @author Jack T
+ *
+ */
 public class Speaker extends AbstractComponent {
 	private static String path = "src/main/java/com/duysoftware/sentrybot/sounds/";
 	
