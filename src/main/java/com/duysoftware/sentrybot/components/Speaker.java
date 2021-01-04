@@ -6,17 +6,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class Speaker extends AbstractComponent {
-	private static String pathForLinux = "sounds/files/";
-	private static String pathForWindows = "src/main/java/com/duysoftware/sentrybot/sounds/";
-	private static String path;
+	private static String path = "src/main/java/com/duysoftware/sentrybot/sounds/";
 	
 	public Speaker() {
-		if (System.getProperty("os.name").equals("Linux")) {
-			path = pathForLinux;
-		} else {
-			path = pathForWindows;
-		}
-		
 		setSuccessStatus(false);
 	}
 	

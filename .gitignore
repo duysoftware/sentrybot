@@ -1,3 +1,7 @@
+run
+test
+main
+
 *.class
 *.jar
 
