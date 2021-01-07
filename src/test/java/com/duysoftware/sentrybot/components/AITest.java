@@ -10,20 +10,25 @@ public class AITest {
 	AI testAI = new AI(robot);
 	
 	@Test
-	public void testPlaySound() {
+	public void testPlaySoundWhichPlaySpecifiedWavFile() {
 		testAI.playSound("hello.wav");
 		assertEquals(true, testAI.wasSuccessful());
 	}
 	
+	//@Test
+	//public void testAlarmSubroutine() {
+		//testAI.alarmSubroutine();
+		//assertEquals(true, testAI.wasSuccessful());
+	//}
+	
 	@Test
-	public void testAlarmSubroutine() {
-		testAI.alarmSubroutine();
+	public void testHoldTheLineSubroutinePlayingYouShallNotPassWav() {
+		testAI.holdTheLineSubroutine();
 		assertEquals(true, testAI.wasSuccessful());
 	}
 	
 	@Test
-	public void testHoldTheLine() {
-		testAI.holdTheLineSubroutine();
-		assertEquals(true, testAI.wasSuccessful());
+	public void testExample1() {
+		
 	}
 }

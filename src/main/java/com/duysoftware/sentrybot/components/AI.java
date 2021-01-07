@@ -131,46 +131,10 @@ public class AI extends AbstractComponent {
 	 * A routine to apprehend an intruder.
 	 */
 	public void holdTheLineSubroutine() {
-		update("start", "hold the line");
 		playSound("shallnotpass.wav");
-		update("end", "hold the line");
 	}
-		
-		// Your plans from main
-				/**
-				 * //Bot has detected an intruder
-					while (gpIOSignal)
-					{
-						spiderBot.raiseAlarm("stepbrobot.wav");
-						
-						//Ideally, signal is lost wants to play an extra ten seconds of the alarm
-						if (!gpIOSignal)
-						{
-							lostTarget = true;
-							spiderBot.raiseAlarm("shallnotpass.wav");
-						}
-					}
-					
-					//After ten seconds passes, goes to search mode(?) and creates this alarm for maybe 15-30 seconds
-					//Can think of this as a cat & mouse chase
-					if (!gpIOSignal && lostTarget)
-					{
-						spiderBot.searchMode();
-						spiderBot.raiseAlarm("ara-ara.wav"); //Continuously plays
-					}
-					
-					//If the bot finds something/someone
-					else
-					{
-						lostTarget = false;
-						spiderBot.raiseAlarm("alert.wav"); //Ideally, Jack wants this to just use this alarm once and repeat the while loop
-						
-						while (gpIOSignal)
-						{
-							spiderBot.raiseAlarm("succ.wav");
-						}
-					}
-				 */
+	
+	
 	
 	//######################### ACTIONS #########################
 	/**
@@ -178,7 +142,9 @@ public class AI extends AbstractComponent {
 	 * @param filename
 	 */
 	public void playSound (String filename) {
+		update("start", filename);
 		robot.playSound(filename);
+		update("end", filename);
 	}
 	
 	/**
@@ -290,5 +256,7 @@ public class AI extends AbstractComponent {
 		robot.playSound("insult1.wav");
 		update("end", "insult");
 	}
+	
+	
 	//#########################################################################
 }
