@@ -10,7 +10,7 @@ public class AITest {
 	AI testAI = new AI(robot);
 	
 	@Test
-	public void test() {
+	public void testPlaySound() {
 		fail("Not yet implemented");
 	}
 	

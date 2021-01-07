@@ -67,9 +67,11 @@ public class AI extends AbstractComponent {
 		if ("start".equals(startOrEnd)) {
 			busy = true;
 			this.status = "RUNNING " + process;
+			setSuccessStatus(false);
 		} else if ("end".equals(startOrEnd)) {
 			busy = false;
 			this.status = "COMPLETED " + process;
+			setSuccessStatus(robot.wasSuccessful());
 		}
 		
 		System.out.println(this.status);
