@@ -11,7 +11,7 @@ public class AITest {
 	
 	@Test
 	public void testPlaySoundWhichPlaySpecifiedWavFile() {
-		testAI.playSound("hello.wav");
+		testAI.playSound("goodbye.wav");
 		assertEquals(true, testAI.wasSuccessful());
 	}
 	
@@ -28,7 +28,8 @@ public class AITest {
 	}
 	
 	@Test
-	public void testExample1() {
-		
+	public void testGoodbyeBuddySmooch() {
+		testAI.goodbyeSubroutine();
+		assertEquals(true, testAI.wasSuccessful());
 	}
 }

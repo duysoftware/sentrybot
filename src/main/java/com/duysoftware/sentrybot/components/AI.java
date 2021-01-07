@@ -89,6 +89,8 @@ public class AI extends AbstractComponent {
 		decisions.put("joke", () -> joke());
 		decisions.put("greet", () -> greet());
 		decisions.put("insult", () -> insult()); 
+		decisions.put("kiss", () -> kiss());
+		decisions.put("goodbye", () -> goodbye());
 	}
 	
 	/**
@@ -134,7 +136,13 @@ public class AI extends AbstractComponent {
 		playSound("shallnotpass.wav");
 	}
 	
-	
+	/**
+	 * A routine to bid the user farewell and simulating kiss.
+	 */
+	public void goodbyeSubroutine() {
+		goodbye();
+		kiss();
+	}
 	
 	//######################### ACTIONS #########################
 	/**
@@ -257,6 +265,23 @@ public class AI extends AbstractComponent {
 		update("end", "insult");
 	}
 	
+	/**
+	 * Make the robot kiss the user or an object.
+	 */
+	public void kiss() {
+		update("start", "kiss");
+		robot.playSound("kiss.wav");
+		update("end", "kiss");
+	}
+	
+	/**
+	 * Make the robot bid the user or object farewell.
+	 */
+	public void goodbye() {
+		update("start", "goodbye");
+		robot.playSound("goodbye.wav");
+		update("end", "goodbye");
+	}
 	
 	//#########################################################################
 }
