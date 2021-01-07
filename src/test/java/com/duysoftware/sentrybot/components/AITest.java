@@ -11,7 +11,19 @@ public class AITest {
 	
 	@Test
 	public void testPlaySound() {
-		fail("Not yet implemented");
+		testAI.playSound("hello.wav");
+		assertEquals(true, testAI.wasSuccessful());
 	}
 	
+	@Test
+	public void testAlarmSubroutine() {
+		testAI.alarmSubroutine();
+		assertEquals(true, testAI.wasSuccessful());
+	}
+	
+	@Test
+	public void testHoldTheLine() {
+		testAI.holdTheLineSubroutine();
+		assertEquals(true, testAI.wasSuccessful());
+	}
 }
