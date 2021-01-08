@@ -1,10 +1,7 @@
 package com.duysoftware.sentrybot.components;
 
-import java.util.Collection;
-
 import com.pi4j.io.gpio.*;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
-import com.pi4j.io.gpio.event.GpioPinListener;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 /**
@@ -21,13 +18,15 @@ public final class SoundSensor extends AbstractComponent {
 	
 	private boolean detected;
 	
+	//=========================================================================
+	// Constructors
+	//=========================================================================
 	/**
 	 * Creates the sensor object and adds a listener for when the device picks
 	 * up loud sounds.
 	 * @param pin - default is RaspiPin.GPIO_02. Check the Raspberry Pi 3 IO
 	 * chart to see which pin the sound sensor is connected to.
 	 */
-	
 	public SoundSensor(Pin pin) {
 		// creates an instance of the gpio controller
 		this.gpio = GpioFactory.getInstance();
@@ -50,10 +49,12 @@ public final class SoundSensor extends AbstractComponent {
         });
         
 		detected = false;
-		
 		setSuccessStatus(true);
 	}
 	
+	//=========================================================================
+	// Methods
+	//=========================================================================
 	/**
 	 * Changes the detected variable back to false;
 	 */

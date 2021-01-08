@@ -13,8 +13,11 @@ public class AI extends AbstractComponent {
 
 	private Set<String> userInputs;
 	private HashMap<String, Runnable> decisions;
-	private String[] jokeBank = {"joke1.wav", "joke2.wav", "joke3.wav"};
+	private String[] jokeBank;
 	
+	//=========================================================================
+    // Constructor
+	//=========================================================================
 	/**
 	 * Forms a new AI unit and connects it to some robotic framework.
 	 */
@@ -27,24 +30,20 @@ public class AI extends AbstractComponent {
 		this.alarmOn = false;
 		this.status = "standby";
 
-		createAvailableUserInputs();
-		// loading available decisions of ai
+		createAvailableUserInputsSet();
 		createDecisionMap();
+		createJokeBankArray(3);
 	}
 	
+	//=========================================================================
+    // Accessors
+	//=========================================================================
 	/**
 	 * Checks to see if bot is in sentry mode.
 	 * @return true if bot is in sentry mode.
 	 */
 	public boolean onSentryMode() {
 		return sentryMode;
-	}
-	/**
-	 * Returns the current status of the unit.
-	 * @return status - a string describing what the unit is doing or has done.
-	 */
-	public String getStatus() {
-		return status;
 	}
 	
 	/**
@@ -55,34 +54,30 @@ public class AI extends AbstractComponent {
 		return busy;
 	}
 	
+	/**
+	 * Returns whether the alarm is currently making a sound.
+	 * @return
+	 */
 	public boolean isAlarmOn() {
 		return alarmOn;
 	}
+	
 	/**
-	 * Changes the busy and status variable depending on whether this is called
-	 * at the start or end of the ai's action.
-	 * @param startOrEnd String that denotes whether the ai's action is
-	 * 		  starting or completed.
-	 * @param process Name of the method currently being called.
+	 * Returns the current status of the unit.
+	 * @return status - a string describing what the unit is doing or has done.
 	 */
-	private void update(String startOrEnd, String process) {
-		if ("start".equals(startOrEnd)) {
-			busy = true;
-			this.status = "RUNNING " + process;
-			setSuccessStatus(false);
-		} else if ("end".equals(startOrEnd)) {
-			busy = false;
-			this.status = "COMPLETED " + process;
-			setSuccessStatus(robot.wasSuccessful());
-		}
-		
-		System.out.println(this.status);
+	public String getStatus() {
+		return status;
 	}
+	
+	//=========================================================================
+    // Data Structures
+    //=========================================================================
 	/**
 	 * Creates a set of user inputs. Commands from here are allowed to
 	 * interrupt currently running actions or subroutines.
 	 */
-	private void createAvailableUserInputs() {
+	private void createAvailableUserInputsSet() {
 		userInputs = new HashSet<String>();
 		
 		userInputs.add("alarmOff");
@@ -111,6 +106,23 @@ public class AI extends AbstractComponent {
 	}
 	
 	/**
+	 * Creates an array of fileNames for jokes.
+	 * @param numJokes number of joke fileNames to create.
+	 */
+	private void createJokeBankArray(int numJokes) {
+		jokeBank = new String[numJokes];
+		
+		int jokeNumber = 0;
+		
+		for (int i = 0; i < jokeBank.length; i++) {
+			jokeBank[i] = "joke" + jokeNumber++ + ".wav";
+		}
+	}
+	
+	//=========================================================================
+    // AI Decision Making and Utilities
+	//=========================================================================
+	/**
 	 * Makes a decision based on given input.
 	 * @param input Can be a command, sensory data from sensors, etc.
 	 */
@@ -124,22 +136,39 @@ public class AI extends AbstractComponent {
 		}
 	}
 	
-	//####################### SUBROUTINES #######################
+	/**
+	 * Changes the busy and status variable depending on whether this is called
+	 * at the start or end of the ai's action.
+	 * @param startOrEnd String that denotes whether the ai's action is
+	 * 		  starting or completed.
+	 * @param process Name of the method currently being called.
+	 */
+	private void update(String startOrEnd, String process) {
+		if ("start".equals(startOrEnd)) {
+			busy = true;
+			this.status = "RUNNING " + process;
+			setSuccessStatus(false);
+		} else if ("end".equals(startOrEnd)) {
+			busy = false;
+			this.status = "COMPLETED " + process;
+			setSuccessStatus(robot.wasSuccessful());
+		}
+		
+		System.out.println(this.status);
+	}
 	
+	//=========================================================================
+    // Subroutines
+	//=========================================================================
 	/**
 	 * An alarm that loops for some amount of time.
 	 */
 	public void alarmSubroutine() {
-		// Temporary value for intruder
 		int loop = 100;
 		alarmOn = true; 
 		
 		while (alarmOn && loop-- > 0) {
-			raiseAlarm();
-			
-			
-			
-			
+			raiseAlarm();	
 		}
 	}
 	
@@ -165,7 +194,9 @@ public class AI extends AbstractComponent {
 		kiss();
 	}
 	
-	//######################### ACTIONS #########################
+	//================================================================================
+    // Actions
+    //================================================================================
 	/**
 	 * A generic method for the robot to play sound in subroutines.
 	 * @param filename
@@ -308,6 +339,4 @@ public class AI extends AbstractComponent {
 		robot.playSound("goodbye.wav");
 		update("end", "goodbye");
 	}
-	
-	//#########################################################################
 }

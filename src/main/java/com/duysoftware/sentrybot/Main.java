@@ -11,25 +11,28 @@ import com.pi4j.io.gpio.RaspiPin;
  */
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("Starting main program...");
-		
 		//===================================================================== 
-		// creates the robot and its ai system
+		// Robot and AI Initialization
+		//=====================================================================
+		System.out.println("Starting main program...");
 		System.out.println("Loading AI...");
 		Robot spiderBot = new Robot();
 		AI ai = new AI(spiderBot);
 		
-		// creates the stand alone SoundSensor 
+		// creates the stand alone SoundSensor, can't connect to robot for ease
+		// of development in non-Raspberry Pi environments.
 		SoundSensor sensor = new SoundSensor(RaspiPin.GPIO_02);
 		
 		//=====================================================================
-		// creates a thread for user inputs
+		// Thread for User Input
+		//=====================================================================
 		System.out.println("Loading User Input Thread...");
 		InputRunnable inputRunnable = new InputRunnable(ai);
 		Thread inputThread = new Thread(inputRunnable);
 		
 		//=====================================================================
-		// main program
+		// Main
+		//=====================================================================
 		boolean onButton = true;
 		System.out.println("Awaiting command...");
 		
@@ -38,7 +41,6 @@ public class Main {
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			

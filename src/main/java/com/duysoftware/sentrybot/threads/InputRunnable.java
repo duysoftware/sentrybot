@@ -8,11 +8,16 @@ public class InputRunnable implements Runnable {
 
 	private AI ai;
 	
+	//=========================================================================
+	// Constructors
+	//=========================================================================
 	public InputRunnable(AI ai) {
 		this.ai = ai;
 	}
 	
-	
+	//=========================================================================
+	// Methods
+	//=========================================================================
 	@Override
 	public void run() {
 		Scanner scan = new Scanner(System.in);

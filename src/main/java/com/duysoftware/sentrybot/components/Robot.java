@@ -9,12 +9,18 @@ package com.duysoftware.sentrybot.components;
 public class Robot extends AbstractComponent {
 	private Speaker speaker;
 	
+	//=========================================================================
+	// Constructors
+	//=========================================================================
 	public Robot() {
 		this.speaker = new Speaker();
 		
 		setSuccessStatus(true);
 	}
 	
+	//=========================================================================
+	// Actions
+	//=========================================================================
 	/** 
 	 * Calls on the attached speakers to play the given file.
 	 * @param fileName String of the name of the soundfile in sounds.

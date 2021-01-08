@@ -9,6 +9,9 @@ package com.duysoftware.sentrybot.components;
 public abstract class AbstractComponent {
 	private boolean successful;
 	
+	//=========================================================================
+	// Methods
+	//=========================================================================
 	/**
 	 * Mostly used by test to check whether components ran correctly
 	 * @return true if component ran

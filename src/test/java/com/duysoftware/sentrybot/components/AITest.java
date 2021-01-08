@@ -17,12 +17,6 @@ public class AITest {
 		assertEquals(true, testAI.wasSuccessful());
 	}
 	
-	//@Test
-	//public void testAlarmSubroutine() {
-		//testAI.alarmSubroutine();
-		//assertEquals(true, testAI.wasSuccessful());
-	//}
-	
 	@Test
 	public void testHoldTheLineSubroutinePlayingYouShallNotPassWav() {
 		testAI.holdTheLineSubroutine();

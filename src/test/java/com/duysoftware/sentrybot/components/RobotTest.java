@@ -7,8 +7,9 @@ import org.junit.Test;
 public class RobotTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testIfSpeakerIsAttached() {
+		Robot robot = new Robot();
+		assertEquals(true, robot.wasSuccessful());
 	}
 
 }

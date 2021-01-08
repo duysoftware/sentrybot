@@ -14,10 +14,16 @@ import javax.sound.sampled.Clip;
 public class Speaker extends AbstractComponent {
 	private static String path = "src/main/java/com/duysoftware/sentrybot/sounds/";
 	
+	//=========================================================================
+	// Constructors
+	//=========================================================================
 	public Speaker() {
 		setSuccessStatus(false);
 	}
 	
+	//=========================================================================
+	// Methods
+	//=========================================================================
 	/**
 	 * Opens and plays the sound file.
 	 * @param fileName The name of the file as .wav file. Example = "file.wav"
