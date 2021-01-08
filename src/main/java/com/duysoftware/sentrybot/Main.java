@@ -42,8 +42,9 @@ public class Main {
 				e.printStackTrace();
 			}
 			
+			// call on alarm subroutine
 			if (ai.onSentryMode() && sensor.querySensors()) {
-				ai.parse("raiseAlarm");
+				ai.parse("redAlert");
 				sensor.reset();
 				System.out.println("Awaiting next command...");
 			}

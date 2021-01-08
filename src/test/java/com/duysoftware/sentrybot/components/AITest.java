@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.duysoftware.sentrybot.threads.InputRunnable;
+
 public class AITest {
 
 	Robot robot = new Robot();
@@ -31,5 +33,17 @@ public class AITest {
 	public void testGoodbyeBuddySmooch() {
 		testAI.goodbyeSubroutine();
 		assertEquals(true, testAI.wasSuccessful());
+	}
+	
+	@Test
+	public void testAlarmTurningOff() {
+		InputRunnable inputRunnable = new InputRunnable(testAI);
+		Thread inputThread = new Thread(inputRunnable);
+		inputThread.start();
+		
+		//testAI.parse("redAlert");
+	
+		assertEquals(false, testAI.alarmOn);
+		
 	}
 }

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class AI extends AbstractComponent {
-
 	private HashMap<String, Runnable> decisions;
 	
 	private Robot robot;
@@ -13,6 +12,7 @@ public class AI extends AbstractComponent {
 	private boolean busy;
 	private String status;
 	
+	public boolean alarmOn;
 	private boolean searching;
 	
 	private String[] jokeBank = {"joke1.wav", "joke2.wav", "joke3.wav"};
@@ -27,6 +27,7 @@ public class AI extends AbstractComponent {
 		this.busy = false;
 		this.status = "standby";
 		
+		this.alarmOn = false;
 		this.searching = false;
 		
 		// loading available decisions of ai
@@ -91,6 +92,12 @@ public class AI extends AbstractComponent {
 		decisions.put("insult", () -> insult()); 
 		decisions.put("kiss", () -> kiss());
 		decisions.put("goodbye", () -> goodbye());
+		
+		// user input buttons
+		decisions.put("alarmOff", () -> alarmOff());
+		
+		// subroutines
+		decisions.put("redAlert", () -> alarmSubroutine());
 	}
 	
 	/**
@@ -106,19 +113,23 @@ public class AI extends AbstractComponent {
 			}
 		}
 	}
+	
 	//####################### SUBROUTINES #######################
 	
 	/**
-	 * A routine to check and search for intruders.
+	 * An alarm that loops for some amount of time.
 	 */
 	public void alarmSubroutine() {
 		// Temporary value for intruder
-		int temporaryLoop = 0;
+		int loop = 100;
+		alarmOn = true; 
 		
-		while (temporaryLoop++ < 5) {
+		while (alarmOn && loop-- > 0) {
 			raiseAlarm();
 			
-			search();
+			
+			
+			
 		}
 	}
 	
@@ -166,6 +177,11 @@ public class AI extends AbstractComponent {
 		searching = true;
 		
 		update("end", "raiseAlarm");
+	}
+	
+	public void alarmOff() {
+		alarmOn = false;
+		System.out.println(alarmOn);
 	}
 	
 	/**

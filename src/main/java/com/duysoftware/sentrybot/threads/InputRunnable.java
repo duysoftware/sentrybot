@@ -30,4 +30,11 @@ public class InputRunnable implements Runnable {
 			}
 		}
 	}
+	
+	/**
+	 * Button to turn the alarm off.
+	 */
+	public void turnAlarmOff() {
+		ai.parse("alarmOff");
+	}
 }
