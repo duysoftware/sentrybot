@@ -1,20 +1,18 @@
 package com.duysoftware.sentrybot.components;
 
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class AI extends AbstractComponent {
-	private HashMap<String, Runnable> decisions;
-	
 	private Robot robot;
 	
 	private boolean sentryMode;
 	private boolean busy;
-	private String status;
-	
-	public boolean alarmOn;
 	private boolean searching;
-	
+	private boolean alarmOn;
+	private String status;
+
+	private Set<String> userInputs;
+	private HashMap<String, Runnable> decisions;
 	private String[] jokeBank = {"joke1.wav", "joke2.wav", "joke3.wav"};
 	
 	/**
@@ -25,11 +23,11 @@ public class AI extends AbstractComponent {
 		
 		this.sentryMode = true;
 		this.busy = false;
-		this.status = "standby";
-		
-		this.alarmOn = false;
 		this.searching = false;
-		
+		this.alarmOn = false;
+		this.status = "standby";
+
+		createAvailableUserInputs();
 		// loading available decisions of ai
 		createDecisionMap();
 	}
@@ -57,6 +55,9 @@ public class AI extends AbstractComponent {
 		return busy;
 	}
 	
+	public boolean isAlarmOn() {
+		return alarmOn;
+	}
 	/**
 	 * Changes the busy and status variable depending on whether this is called
 	 * at the start or end of the ai's action.
@@ -76,6 +77,15 @@ public class AI extends AbstractComponent {
 		}
 		
 		System.out.println(this.status);
+	}
+	/**
+	 * Creates a set of user inputs. Commands from here are allowed to
+	 * interrupt currently running actions or subroutines.
+	 */
+	private void createAvailableUserInputs() {
+		userInputs = new HashSet<String>();
+		
+		userInputs.add("alarmOff");
 	}
 	
 	/**
@@ -105,7 +115,7 @@ public class AI extends AbstractComponent {
 	 * @param input Can be a command, sensory data from sensors, etc.
 	 */
 	public void parse(String input) {
-		if (!busy) {	
+		if (!busy || userInputs.contains(input)) {	
 			if (decisions.containsKey(input)) {
 				decisions.get(input).run();
 			} else {
@@ -181,7 +191,7 @@ public class AI extends AbstractComponent {
 	
 	public void alarmOff() {
 		alarmOn = false;
-		System.out.println(alarmOn);
+		System.out.println("alarmOn is now " + alarmOn);
 	}
 	
 	/**

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.duysoftware.sentrybot.threads.InputRunnable;
+import com.duysoftware.sentrybot.threads.StopActionsRunnable;
 
 public class AITest {
 
@@ -37,13 +37,13 @@ public class AITest {
 	
 	@Test
 	public void testAlarmTurningOff() {
-		InputRunnable inputRunnable = new InputRunnable(testAI);
-		Thread inputThread = new Thread(inputRunnable);
-		inputThread.start();
+		StopActionsRunnable  stop = new StopActionsRunnable(testAI);
+		Thread thread = new Thread(stop);
+		thread.start();
 		
-		//testAI.parse("redAlert");
-	
-		assertEquals(false, testAI.alarmOn);
+		testAI.parse("redAlert");
 		
+		thread.stop();
+		assertEquals(false, testAI.isAlarmOn());	
 	}
 }
