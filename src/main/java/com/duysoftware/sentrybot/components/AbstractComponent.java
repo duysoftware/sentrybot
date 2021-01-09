@@ -1,7 +1,8 @@
 package com.duysoftware.sentrybot.components;
 
 /**
- * All components will share a "successful" variable to use for testing.
+ * All components will share a "successful" variable and a debugMode 
+ * to use for testing.
  * @author Duy N
  * @author Jack T
  *
@@ -22,7 +23,7 @@ public abstract class AbstractComponent {
 	}
 	
 	//=========================================================================
-	// Methods
+	// Accessors
 	//=========================================================================
 	/**
 	 * Mostly used by test to check whether components ran correctly
