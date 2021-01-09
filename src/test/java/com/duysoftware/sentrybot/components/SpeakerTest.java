@@ -9,6 +9,7 @@ public class SpeakerTest {
 	@Test
 	public void testPlay() {
 		Speaker testSpeakers = new Speaker();
+		testSpeakers.setDebugModeOn();
 		
 		testSpeakers.play("autotune.wav");
 		

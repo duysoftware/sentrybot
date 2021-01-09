@@ -2,15 +2,25 @@ package com.duysoftware.sentrybot.components;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.duysoftware.sentrybot.threads.StopActionsRunnable;
 
 public class AITest {
 
-	Robot robot = new Robot();
-	AI testAI = new AI(robot);
-	
+	Robot robot;
+	AI testAI;
+
+	@Before
+    public void init() {
+		robot = new Robot();
+		testAI = new AI(robot);
+		
+		// Comment out below line if you need to hear the audio
+		robot.setDebugModeOn();
+	}   
+        
 	@Test
 	public void testPlaySoundWhichPlaySpecifiedWavFile() {
 		testAI.playSound("goodbye.wav");
@@ -31,7 +41,7 @@ public class AITest {
 	
 	@Test
 	public void testAlarmTurningOff() {
-		StopActionsRunnable  stop = new StopActionsRunnable(testAI);
+		StopActionsRunnable stop = new StopActionsRunnable(testAI);
 		Thread thread = new Thread(stop);
 		thread.start();
 		
@@ -40,4 +50,5 @@ public class AITest {
 		thread.stop();
 		assertEquals(false, testAI.isAlarmOn());	
 	}
+	
 }

@@ -18,7 +18,8 @@ public class Speaker extends AbstractComponent {
 	// Constructors
 	//=========================================================================
 	public Speaker() {
-		setSuccessStatus(false);
+		super();
+		setSuccessStatus(true);
 	}
 	
 	//=========================================================================
@@ -40,7 +41,9 @@ public class Speaker extends AbstractComponent {
 			
 			System.out.println("PLAYING " + fileName);
 			
-			Thread.sleep(clip.getMicrosecondLength()/1000); 
+			if (!isDebugModeOn()) {
+				Thread.sleep(clip.getMicrosecondLength()/1000); 
+			}
 			
 			clip.close();
 			System.out.println("CLOSED " + fileName);

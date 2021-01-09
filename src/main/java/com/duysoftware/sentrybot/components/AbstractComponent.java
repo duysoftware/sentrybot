@@ -8,6 +8,18 @@ package com.duysoftware.sentrybot.components;
  */
 public abstract class AbstractComponent {
 	private boolean successful;
+	private boolean debugModeOn;
+	
+	//=========================================================================
+	// Constructors
+	//=========================================================================
+	/**
+	 * Sets variables successful, debugModeOn to: false.
+	 */
+	protected AbstractComponent() {
+		this.successful = false;
+		this.debugModeOn = false;
+	}
 	
 	//=========================================================================
 	// Methods
@@ -20,7 +32,27 @@ public abstract class AbstractComponent {
 		return successful;
 	}
 	
+	/**
+	 * Set to false if the component failed to use its function.
+	 * @param value
+	 */
 	public void setSuccessStatus(boolean value) {
 		successful = value;
+	}
+	
+	/**
+	 * See if component is in debug mode.
+	 * @return
+	 */
+	public boolean isDebugModeOn() {
+		return debugModeOn;
+	}
+	
+	/**
+	 * Turn debug mode on. Usually components with this mode on will not play
+	 * videos or sound. Allows for easier unit testing.
+	 */
+	public void setDebugModeOn() {
+		debugModeOn = true;
 	}
 }

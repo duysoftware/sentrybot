@@ -28,6 +28,7 @@ public final class SoundSensor extends AbstractComponent {
 	 * chart to see which pin the sound sensor is connected to.
 	 */
 	public SoundSensor(Pin pin) {
+		super();
 		// creates an instance of the gpio controller
 		this.gpio = GpioFactory.getInstance();
 		

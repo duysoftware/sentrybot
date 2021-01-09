@@ -13,6 +13,7 @@ public class Robot extends AbstractComponent {
 	// Constructors
 	//=========================================================================
 	public Robot() {
+		super();
 		this.speaker = new Speaker();
 		
 		setSuccessStatus(true);
@@ -30,4 +31,15 @@ public class Robot extends AbstractComponent {
 		speaker.play(fileName);
 		setSuccessStatus(speaker.wasSuccessful());
 	}
+	
+	//=========================================================================
+	// Override Methods
+	//=========================================================================
+	@Override
+	public void setDebugModeOn() {
+		super.setDebugModeOn();
+		
+		speaker.setDebugModeOn();
+	}
+	
 }
