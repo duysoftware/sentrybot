@@ -12,7 +12,9 @@ public class AI extends AbstractComponent {
 	private boolean searching;
 	private boolean alarmOn;
 	private String status;
-
+	
+	Thread videoThread;
+	
 	private Set<String> userInputs;
 	private HashMap<String, Runnable> decisions;
 	private String[] jokeBank;
@@ -33,6 +35,9 @@ public class AI extends AbstractComponent {
 		this.alarmOn = false;
 		this.status = "standby";
 
+		videoThread = new Thread(new VideoPlayerRunnable(this));
+		videoThread.start();
+		
 		createAvailableUserInputsSet();
 		createDecisionMap();
 		createJokeBankArray(3);
@@ -163,11 +168,12 @@ public class AI extends AbstractComponent {
 	}
 	
 	private void runVideoThread() {
-		VideoPlayerRunnable runnable = new VideoPlayerRunnable(this);
-		Thread thread = new Thread(runnable);
-		thread.start();
+		videoThread.start();
 	}
 	 
+	private void stopVideoThread() {
+		videoThread.interrupt();;
+	}
 	
 	//=========================================================================
     // Subroutines
@@ -225,11 +231,9 @@ public class AI extends AbstractComponent {
 	public void raiseAlarm() {
 		update("start", "raiseAlarm");
 		
-		runVideoThread();
 		playSound("nani.wav");
 		
 		searching = true;
-		
 		update("end", "raiseAlarm");
 	}
 	

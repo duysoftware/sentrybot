@@ -47,8 +47,13 @@ public class AITest {
 		
 		testAI.parse("redAlert");
 		
-		thread.stop();
 		assertEquals(false, testAI.isAlarmOn());	
+	}
+	
+	@Test
+	public void testRaiseAlarm() {
+		testAI.parse("raiseAlarm");
+		assertEquals(true, testAI.wasSuccessful());
 	}
 	
 }
