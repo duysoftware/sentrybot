@@ -2,6 +2,8 @@ package com.duysoftware.sentrybot.components;
 
 import java.util.*;
 
+import com.duysoftware.sentrybot.threads.VideoPlayerRunnable;
+
 public class AI extends AbstractComponent {
 	private Robot robot;
 	
@@ -160,6 +162,13 @@ public class AI extends AbstractComponent {
 		System.out.println(this.status);
 	}
 	
+	private void runVideoThread() {
+		VideoPlayerRunnable runnable = new VideoPlayerRunnable(this);
+		Thread thread = new Thread(runnable);
+		thread.start();
+	}
+	 
+	
 	//=========================================================================
     // Subroutines
 	//=========================================================================
@@ -216,6 +225,7 @@ public class AI extends AbstractComponent {
 	public void raiseAlarm() {
 		update("start", "raiseAlarm");
 		
+		runVideoThread();
 		playSound("nani.wav");
 		
 		searching = true;
