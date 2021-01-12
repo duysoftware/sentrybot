@@ -18,8 +18,8 @@ public class RobotTest {
     public void init() {
 		robot = new Robot();
 		
-		// Comment out below line if you need to hear the audio
-		//robot.setDebugModeOn();
+		// Comment out below for full video
+		robot.setDebugModeOn();
 	} 
 	
 	@Test
@@ -29,7 +29,7 @@ public class RobotTest {
 	
 	@Test 
 	public void testShowImageJustByItSelf() {
-		robot.showImage("heheh.gif");
+		robot.showImage("heheh");
 		assertEquals(true, robot.wasSuccessful());
 	}
 	
@@ -42,7 +42,7 @@ public class RobotTest {
 	@Test
 	public void testForVideosPlayedAfterOneAnother() {
 		robot.playVideo("raiseAlarm");
-		robot.playVideo("goodBye");
+		robot.playVideo("goodbye");
 		assertEquals(true, robot.wasSuccessful());
 	}
 	

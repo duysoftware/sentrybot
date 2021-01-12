@@ -7,16 +7,14 @@ package com.duysoftware.sentrybot.components;
  *
  */
 public class Robot extends AbstractComponent {
-	private Speaker speaker;
-	private ImagePlayer imagePlayer;
+	private MediaPlayer mediaPlayer;
+	
 	//=========================================================================
 	// Constructors
 	//=========================================================================
 	public Robot() {
 		super();
-		this.speaker = new Speaker();
-		this.imagePlayer = new ImagePlayer();
-		
+		this.mediaPlayer = new MediaPlayer();
 		setSuccessStatus(true);
 	}
 	
@@ -29,8 +27,8 @@ public class Robot extends AbstractComponent {
 	 */
 	public void playSound(String fileName) {
 		setSuccessStatus(false);
-		speaker.play(fileName);
-		setSuccessStatus(speaker.wasSuccessful());
+		mediaPlayer.playSound(fileName);
+		setSuccessStatus(mediaPlayer.wasSuccessful());
 	}
 	
 	/**
@@ -39,8 +37,8 @@ public class Robot extends AbstractComponent {
 	 */
 	public void showImage(String fileName) {
 		setSuccessStatus(false);
-		imagePlayer.play(fileName);
-		setSuccessStatus(imagePlayer.wasSuccessful());
+		mediaPlayer.playImage(fileName);
+		setSuccessStatus(mediaPlayer.wasSuccessful());
 	}
 	
 	/**
@@ -49,9 +47,8 @@ public class Robot extends AbstractComponent {
 	 */
 	public void playVideo(String videoName) {
 		setSuccessStatus(false);
-		imagePlayer.play(videoName + ".gif");
-		speaker.play(videoName + ".wav");
-		setSuccessStatus(imagePlayer.wasSuccessful() && speaker.wasSuccessful());
+		mediaPlayer.playVideo(videoName);
+		setSuccessStatus(mediaPlayer.wasSuccessful());
 	}
 	
 	
@@ -62,8 +59,7 @@ public class Robot extends AbstractComponent {
 	public void setDebugModeOn() {
 		super.setDebugModeOn();
 		
-		speaker.setDebugModeOn();
-		imagePlayer.setDebugModeOn();
+		mediaPlayer.setDebugModeOn();
 	}
 	
 }

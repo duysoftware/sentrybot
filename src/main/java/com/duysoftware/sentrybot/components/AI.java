@@ -125,7 +125,7 @@ public class AI extends AbstractComponent {
 		int jokeNumber = 0;
 		
 		for (int i = 0; i < jokeBank.length; i++) {
-			jokeBank[i] = "joke" + jokeNumber++ + ".wav";
+			jokeBank[i] = "joke" + jokeNumber++;
 		}
 	}
 	
@@ -201,7 +201,7 @@ public class AI extends AbstractComponent {
 	 * A routine to apprehend an intruder.
 	 */
 	public void holdTheLineSubroutine() {
-		playSound("shallnotpass.wav");
+		playSound("shallnotpass");
 	}
 	
 	/**
@@ -231,7 +231,7 @@ public class AI extends AbstractComponent {
 	public void raiseAlarm() {
 		update("start", "raiseAlarm");
 		
-		playSound("raiseAlarm.wav");
+		playSound("raiseAlarm");
 		
 		searching = true;
 		update("end", "raiseAlarm");
@@ -251,7 +251,7 @@ public class AI extends AbstractComponent {
 			update("start", "search");
 			
 			// TODO Print out "Robot is searching" and play some sound
-			playSound("ara-ara.wav");
+			playSound("search");
 			
 			try {
 				Thread.sleep(2000);
@@ -274,7 +274,7 @@ public class AI extends AbstractComponent {
 		/**
 		 * while (movement == true)
 		 * {
-		 * 		robot.playSound("idle.wav");
+		 * 		robot.playSound("idle");
 		 * }
 		 */
 		
@@ -290,12 +290,12 @@ public class AI extends AbstractComponent {
 		
 		/**
 		 * Ideally
-		 * while (robot.playSound("hello.wav");
+		 * while (robot.playSound("hello");
 		 * {
 		 * 		[Waves Arm Here];
 		 * }
 		 */
-		playSound("hello.wav");
+		playSound("hello");
 		
 		update("end", "greet");
 	}
@@ -311,9 +311,9 @@ public class AI extends AbstractComponent {
 		Random rand = new Random();
 		playSound(jokeBank[rand.nextInt(jokeBank.length)]);
 		
-		playSound("laugh.wav");
+		playSound("laugh");
 		/**
-		 * while (robot.playSound("watcha.wav") {
+		 * while (robot.playSound("watcha") {
 		 * 		[bops its head/body here];
 		 * }
 		 */
@@ -326,7 +326,7 @@ public class AI extends AbstractComponent {
 	 */
 	public void mourn() {
 		update("start", "mourn");
-		playSound("caesar.wav");
+		playSound("caesar");
 		update("end", "mourn");
 	}
 	
@@ -335,7 +335,7 @@ public class AI extends AbstractComponent {
 	 */
 	public void insult() {
 		update("start", "insult");
-		playSound("insult1.wav");
+		playSound("insult1");
 		update("end", "insult");
 	}
 	
@@ -344,7 +344,7 @@ public class AI extends AbstractComponent {
 	 */
 	public void kiss() {
 		update("start", "kiss");
-		playSound("kiss.wav");
+		playSound("kiss");
 		update("end", "kiss");
 	}
 	
@@ -353,7 +353,7 @@ public class AI extends AbstractComponent {
 	 */
 	public void goodbye() {
 		update("start", "goodbye");
-		playSound("goodbye.wav");
+		playSound("goodbye");
 		update("end", "goodbye");
 	}
 }

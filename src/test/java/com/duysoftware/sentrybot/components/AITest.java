@@ -23,7 +23,7 @@ public class AITest {
         
 	@Test
 	public void testPlaySoundWhichPlaySpecifiedWavFile() {
-		testAI.playSound("goodbye.wav");
+		testAI.playSound("goodbye");
 		assertEquals(true, testAI.wasSuccessful());
 	}
 	
