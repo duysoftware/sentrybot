@@ -38,5 +38,14 @@ public class RobotTest {
 		robot.playVideo("raiseAlarm");
 		assertEquals(true, robot.wasSuccessful());		
 	}
+	
+	@Test
+	public void testForVideosPlayedAfterOneAnother() {
+		robot.playVideo("raiseAlarm");
+		robot.playVideo("goodBye");
+		assertEquals(true, robot.wasSuccessful());
+	}
+	
+	
 
 }
