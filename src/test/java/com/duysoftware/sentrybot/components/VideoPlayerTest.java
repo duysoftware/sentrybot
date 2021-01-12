@@ -14,12 +14,12 @@ public class VideoPlayerTest {
 		testVideoPlayer = new VideoPlayer();
 		
 		// Comment if you want video to play during testing.
-		//testVideoPlayer.setDebugModeOn();
+		// testVideoPlayer.setDebugModeOn();
 	}
 	
 	@Test
 	public void testPlay() {
-		testVideoPlayer.play("heheh.gif");
+		testVideoPlayer.play("raise_alarm.gif");
 		
 		assertEquals(true, testVideoPlayer.wasSuccessful());
 	}
