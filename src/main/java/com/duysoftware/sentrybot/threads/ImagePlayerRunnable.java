@@ -2,14 +2,14 @@ package com.duysoftware.sentrybot.threads;
 
 import com.duysoftware.sentrybot.components.AI;
 
-public class VideoPlayerRunnable implements Runnable {
+public class ImagePlayerRunnable implements Runnable {
 
 private AI ai;
 	
 	//=========================================================================
 	// Constructors
 	//=========================================================================
-	public VideoPlayerRunnable(AI ai) {
+	public ImagePlayerRunnable(AI ai) {
 		this.ai = ai;
 	}
 	

@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class VideoPlayerTest {
+public class ImagePlayerTest {
 
-	VideoPlayer testVideoPlayer;
+	ImagePlayer testImagePlayer;
 	
 	@Before
 	public void init() {
-		testVideoPlayer = new VideoPlayer();
+		testImagePlayer = new ImagePlayer();
 		
 		// Comment if you want video to play during testing.
 		// testVideoPlayer.setDebugModeOn();
@@ -19,9 +19,9 @@ public class VideoPlayerTest {
 	
 	@Test
 	public void testPlay() {
-		testVideoPlayer.play("raise_alarm.gif");
+		testImagePlayer.play("raise_alarm.gif");
 		
-		assertEquals(true, testVideoPlayer.wasSuccessful());
+		assertEquals(true, testImagePlayer.wasSuccessful());
 	}
 
 }
