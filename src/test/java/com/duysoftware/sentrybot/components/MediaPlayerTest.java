@@ -14,7 +14,7 @@ public class MediaPlayerTest {
 		testMedia = new MediaPlayer();
 		
 		// Comment out below if you want the full videos
-		testMedia.setDebugModeOn();
+		//testMedia.setDebugModeOn();
 	}
 	
 	@Test
