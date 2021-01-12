@@ -19,12 +19,24 @@ public class RobotTest {
 		robot = new Robot();
 		
 		// Comment out below line if you need to hear the audio
-		robot.setDebugModeOn();
+		//robot.setDebugModeOn();
 	} 
 	
 	@Test
 	public void testIfSpeakerIsAttached() {
 		assertEquals(true, robot.wasSuccessful());
+	}
+	
+	@Test 
+	public void testShowImageJustByItSelf() {
+		robot.showImage("heheh.gif");
+		assertEquals(true, robot.wasSuccessful());
+	}
+	
+	@Test
+	public void testPlayVideoWithImageAndSound() {
+		robot.playVideo("raiseAlarm");
+		assertEquals(true, robot.wasSuccessful());		
 	}
 
 }

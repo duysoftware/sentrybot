@@ -8,13 +8,14 @@ package com.duysoftware.sentrybot.components;
  */
 public class Robot extends AbstractComponent {
 	private Speaker speaker;
-	
+	private ImagePlayer imagePlayer;
 	//=========================================================================
 	// Constructors
 	//=========================================================================
 	public Robot() {
 		super();
 		this.speaker = new Speaker();
+		this.imagePlayer = new ImagePlayer();
 		
 		setSuccessStatus(true);
 	}
@@ -32,6 +33,28 @@ public class Robot extends AbstractComponent {
 		setSuccessStatus(speaker.wasSuccessful());
 	}
 	
+	/**
+	 * Calls on the image player to show the given file.
+	 * @param fileName String of the name of the image file in gifs.
+	 */
+	public void showImage(String fileName) {
+		setSuccessStatus(false);
+		imagePlayer.play(fileName);
+		setSuccessStatus(imagePlayer.wasSuccessful());
+	}
+	
+	/**
+	 * Combines playSound and showImage to simulate a video.
+	 * @param videoName Name of video to be shown.
+	 */
+	public void playVideo(String videoName) {
+		setSuccessStatus(false);
+		imagePlayer.play(videoName + ".gif");
+		speaker.play(videoName + ".wav");
+		setSuccessStatus(imagePlayer.wasSuccessful() && speaker.wasSuccessful());
+	}
+	
+	
 	//=========================================================================
 	// Override Methods
 	//=========================================================================
@@ -40,6 +63,7 @@ public class Robot extends AbstractComponent {
 		super.setDebugModeOn();
 		
 		speaker.setDebugModeOn();
+		imagePlayer.setDebugModeOn();
 	}
 	
 }

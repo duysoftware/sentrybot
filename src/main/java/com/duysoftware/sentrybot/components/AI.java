@@ -231,7 +231,7 @@ public class AI extends AbstractComponent {
 	public void raiseAlarm() {
 		update("start", "raiseAlarm");
 		
-		playSound("nani.wav");
+		playSound("raiseAlarm.wav");
 		
 		searching = true;
 		update("end", "raiseAlarm");

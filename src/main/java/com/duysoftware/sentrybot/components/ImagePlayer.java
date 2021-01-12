@@ -56,10 +56,7 @@ public class ImagePlayer extends AbstractComponent {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setLocationRelativeTo(null);
-            
-            if (!isDebugModeOn()) {
-            	Thread.sleep(5000);	
-            }
+
             
             setSuccessStatus(true);
         } catch (Exception e) {
