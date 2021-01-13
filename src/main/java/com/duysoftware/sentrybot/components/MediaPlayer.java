@@ -37,7 +37,6 @@ public class MediaPlayer extends AbstractComponent {
 		System.out.println("PLAYING " + fileName 
 							+ ", with Image: " + showImage
 							+ ", with Audio: " + allowSound);
-		
 		// TODO find better place to put this.
 		JFrame frame = new JFrame();
 		frame.setUndecorated(true);
