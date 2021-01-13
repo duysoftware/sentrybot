@@ -10,8 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class MediaPlayer extends AbstractComponent {
-	private static String imgPath = "src/main/java/com/duysoftware/sentrybot/gifs/";
-	private static String soundPath = "src/main/java/com/duysoftware/sentrybot/sounds/";
+	private static String path = "src/main/java/com/duysoftware/sentrybot/media/";
 	
 	JFrame frame;
 	
@@ -47,7 +46,7 @@ public class MediaPlayer extends AbstractComponent {
 		// Image portion
 		if (showImage) {
 			try {
-				File imageFile = new File(imgPath + fileName + ".gif");
+				File imageFile = new File(path + fileName + ".gif");
 	        	
 	        	Icon icon = new ImageIcon(imageFile.toURI().toURL());
 	        	JLabel label = new JLabel(icon);
@@ -73,7 +72,7 @@ public class MediaPlayer extends AbstractComponent {
 		// Sound Portion
 		if (allowSound) {
 			try {
-				File soundFile = new File(soundPath + fileName + ".wav");
+				File soundFile = new File(path + fileName + ".wav");
 				
 				Clip clip = AudioSystem.getClip(null);
 				clip.open(AudioSystem.getAudioInputStream(soundFile));
