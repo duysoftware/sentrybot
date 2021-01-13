@@ -14,7 +14,7 @@ public class MediaPlayerTest {
 		testMedia = new MediaPlayer();
 		
 		// Comment out below if you want the full videos
-		testMedia.setDebugModeOn();
+		//testMedia.setDebugModeOn();
 	}
 	
 	@Test
@@ -26,12 +26,6 @@ public class MediaPlayerTest {
 	@Test
 	public void testPlayVideoForGoodbye() {
 		testMedia.playVideo("goodbye");
-		assertEquals(true, testMedia.wasSuccessful());
-	}
-	
-	@Test
-	public void testPlaySoundOnly() {
-		testMedia.playSound("raiseAlarm");
 		assertEquals(true, testMedia.wasSuccessful());
 	}
 	

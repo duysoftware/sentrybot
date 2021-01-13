@@ -20,11 +20,6 @@ public class MediaPlayer extends AbstractComponent {
 	public MediaPlayer() {
 		super();
 			
-		// Frame config
-		frame = new JFrame();
-		frame.setUndecorated(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		setSuccessStatus(true);
 	}
 	
@@ -42,6 +37,11 @@ public class MediaPlayer extends AbstractComponent {
 		System.out.println("PLAYING " + fileName 
 							+ ", with Image: " + showImage
 							+ ", with Audio: " + allowSound);
+		
+		// TODO find better place to put this.
+		JFrame frame = new JFrame();
+		frame.setUndecorated(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Image portion
 		if (showImage) {
