@@ -2,8 +2,6 @@ package com.duysoftware.sentrybot.components;
 
 import java.util.*;
 
-import com.duysoftware.sentrybot.threads.ImagePlayerRunnable;
-
 public class AI extends AbstractComponent {
 	private Robot robot;
 	
@@ -12,8 +10,6 @@ public class AI extends AbstractComponent {
 	private boolean searching;
 	private boolean alarmOn;
 	private String status;
-	
-	Thread imageThread;
 	
 	private Set<String> userInputs;
 	private HashMap<String, Runnable> decisions;
@@ -34,9 +30,6 @@ public class AI extends AbstractComponent {
 		this.searching = false;
 		this.alarmOn = false;
 		this.status = "standby";
-
-		imageThread = new Thread(new ImagePlayerRunnable(this));
-		imageThread.start();
 		
 		createAvailableUserInputsSet();
 		createDecisionMap();
@@ -165,14 +158,6 @@ public class AI extends AbstractComponent {
 		}
 		
 		System.out.println(this.status);
-	}
-	
-	private void runImageThread() {
-		imageThread.start();
-	}
-	 
-	private void stopImageThread() {
-		imageThread.interrupt();;
 	}
 	
 	//=========================================================================
