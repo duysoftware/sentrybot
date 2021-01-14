@@ -1,6 +1,7 @@
 package com.duysoftware.sentrybot.components;
 
 import java.io.File;
+import java.net.MalformedURLException;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -9,18 +10,38 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * 
+ * @author Duy N
+ * @author Jack T
+ *
+ */
 public class MediaPlayer extends AbstractComponent {
 	private static String path = "src/main/java/com/duysoftware/sentrybot/media/";
 	
-	JFrame frame;
+	private boolean loop;
 	
 	//=========================================================================
 	// Constructors
 	//=========================================================================
+	/**
+	 * Creates a media player capable to playing videos, images, and sounds.
+	 */
 	public MediaPlayer() {
 		super();
-			
+		this.loop = false;
 		setSuccessStatus(true);
+	}
+	
+	//=========================================================================
+	// Accessors
+	//=========================================================================	
+	public void setLoop(boolean val) {
+		loop = val;
+	}
+	
+	public boolean isLooping() {
+		return loop;
 	}
 	
 	//=========================================================================
@@ -31,95 +52,90 @@ public class MediaPlayer extends AbstractComponent {
 	 * @param fileName Name of the file without the extension.
 	 * @param showImage If true, will show the image.
 	 * @param showSound If true, will play sound.
+	 * @throws Exceptions: MalformedURL, LineUnavailable, IO, Interrupt
 	 */
-	public void playVideo(String fileName, boolean showImage, boolean allowSound) {
+	public void playVideo(String fileName, 
+						  boolean showImage, 
+						  boolean allowSound) throws Exception {		
 		setSuccessStatus(false);
-		System.out.println("PLAYING " + fileName 
-							+ ", with Image: " + showImage
-							+ ", with Audio: " + allowSound);
-		// TODO find better place to put this.
+		System.out.println("PLAYING " + fileName);
+		
+		/* Image Loading Portion */
+		File imageFile = new File(path + fileName + ".gif");
+		Icon icon = new ImageIcon(imageFile.toURI().toURL());
+    	JLabel label = new JLabel(icon);
 		JFrame frame = new JFrame();
 		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().add(label);
+        frame.pack();
+        frame.setSize(800, 480);
+        frame.setLocationRelativeTo(null);
+
+        /* Sound Loading Portion */
+		File soundFile = new File(path + fileName + ".wav");	
+		Clip clip = AudioSystem.getClip(null);
+		clip.open(AudioSystem.getAudioInputStream(soundFile));
 		
-		// Image portion
-		if (showImage) {
-			try {
-				File imageFile = new File(path + fileName + ".gif");
-	        	
-	        	Icon icon = new ImageIcon(imageFile.toURI().toURL());
-	        	JLabel label = new JLabel(icon);
-	        	
-	        	// Adds our image to this frame	
-	            frame.getContentPane().add(label);
-	            
-	            //frame.setSize(1920, 1080);
-	            frame.setVisible(true);  
-	            frame.pack();
-	            frame.setLocationRelativeTo(null);
-	            
-	            // changed to false to show image has been loaded.
-	            showImage = false;
-			} 
-			catch (Exception e) {
-				System.out.println("ERROR: Image failed to load.");
-				e.printStackTrace();
+		/* If debug is on, sound will not play. Image won't show too. */
+		if (!isDebugModeOn()) {
+			
+			/* Whether to show the image or not. */
+			frame.setVisible(showImage);
+			
+			/* Whether to allow sound or not. */
+			if (allowSound) {
+				clip.start();
+				/* Loop the video if user called playVideoWithLooping. */
+				while (isLooping()) {
+					clip.loop(Clip.LOOP_CONTINUOUSLY);
+				}
 			}
 			
+			/* This thread will wait while the audio is playing. */
+			Thread.sleep(clip.getMicrosecondLength()/1000); 
 		}
 		
-		// Sound Portion
-		if (allowSound) {
-			try {
-				File soundFile = new File(path + fileName + ".wav");
-				
-				Clip clip = AudioSystem.getClip(null);
-				clip.open(AudioSystem.getAudioInputStream(soundFile));
-				clip.start();
-				
-				// If debug is on, sound will not play. Image won't show too.
-				if (!isDebugModeOn()) {
-					Thread.sleep(clip.getMicrosecondLength()/1000); 
-				}
-				
-				clip.close();
-				
-				// changed to false to show sound has been loaded.
-				allowSound = false;
-			} 
-			catch (Exception e) {
-				System.out.println("ERROR: Sound failed to load.");
-				e.printStackTrace();
-			}
-		}
-		
-		frame.dispose();
-		
-		System.out.println("Closing file " + fileName);
-		setSuccessStatus(!showImage && !allowSound);
+		/* Closing and Cleanup */
+		clip.close();
+		frame.dispose();	
+		System.out.println("Closing " + fileName);
+		setSuccessStatus(true);
 	}
 	
 	/**
 	 * Plays the video with both sound and image enabled.
 	 * @param fileName
+	 * @throws Exception 
 	 */
-	public void playVideo(String fileName) {
+	public void playVideo(String fileName) throws Exception {
 		playVideo(fileName, true, true);
+	}
+	
+	/**
+	 * Plays the video with looping enabled.
+	 */
+	public void playVideoWithLoop(String fileName) throws Exception {
+		setLoop(true);
+		playVideo(fileName, true, true);
+		setLoop(false);
 	}
 	
 	/**
 	 * Shows only the image with no sounds.
 	 * @param fileName
+	 * @throws Exception 
 	 */
-	public void playImage(String fileName) {
+	public void playImage(String fileName) throws Exception {
 		playVideo(fileName, true, false);
 	}
 	
 	/**
 	 * Plays only the sound.
 	 * @param fileName
+	 * @throws Exception 
 	 */
-	public void playSound(String fileName) {
+	public void playSound(String fileName) throws Exception {
 		playVideo(fileName, false,  true);
 	}
 }

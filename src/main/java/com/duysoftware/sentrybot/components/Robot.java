@@ -22,35 +22,60 @@ public class Robot extends AbstractComponent {
 	// Actions
 	//=========================================================================
 	/** 
-	 * Calls on the attached speakers to play the given file.
-	 * @param fileName String of the name of the soundfile in sounds.
+	 * Play the given sound file
+	 * @param fileName String of the name of the soundfile in media.
 	 */
 	public void playSound(String fileName) {
 		setSuccessStatus(false);
-		mediaPlayer.playSound(fileName);
+		try {
+			mediaPlayer.playSound(fileName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		setSuccessStatus(mediaPlayer.wasSuccessful());
 	}
 	
 	/**
-	 * Calls on the image player to show the given file.
-	 * @param fileName String of the name of the image file in gifs.
+	 * Show the given image.
+	 * @param fileName String of the name of the image file in media.
 	 */
 	public void showImage(String fileName) {
 		setSuccessStatus(false);
-		mediaPlayer.playImage(fileName);
+		try {
+			mediaPlayer.playImage(fileName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		setSuccessStatus(mediaPlayer.wasSuccessful());
 	}
 	
 	/**
-	 * Combines playSound and showImage to simulate a video.
+	 * Play the given video.
 	 * @param videoName Name of video to be shown.
 	 */
 	public void playVideo(String videoName) {
 		setSuccessStatus(false);
-		mediaPlayer.playVideo(videoName);
+		try {
+			mediaPlayer.playVideo(videoName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		setSuccessStatus(mediaPlayer.wasSuccessful());
 	}
 	
+	/**
+	 * Play the given video and loop it.
+	 * @param videoName Name of video to be shown.
+	 */
+	public void playVideoWithLoops(String videoName) {
+		setSuccessStatus(false);
+		try {
+			mediaPlayer.playVideoWithLoop(videoName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		setSuccessStatus(mediaPlayer.wasSuccessful());
+	}
 	
 	//=========================================================================
 	// Override Methods

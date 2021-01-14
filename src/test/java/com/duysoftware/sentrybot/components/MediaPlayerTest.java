@@ -13,43 +13,68 @@ public class MediaPlayerTest {
 	public void init() {
 		testMedia = new MediaPlayer();
 		
-		// Comment out below if you want the full videos
-		//testMedia.setDebugModeOn();
+		/* Comment out below if you want the full videos */
+		testMedia.setDebugModeOn();
 	}
 	
 	@Test
-	public void testPlayVideoForRaiseAlarm() {
-		testMedia.playVideo("raiseAlarm");
+	public void testPlayVideoForRaiseAlarm2() {
+		try {
+			testMedia.playVideo("raiseAlarm2");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		assertEquals(true, testMedia.wasSuccessful());
 	}
 	
 	@Test
 	public void testPlayVideoForGoodbye() {
-		testMedia.playVideo("goodbye");
+		try {
+			testMedia.playVideo("goodbye");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		assertEquals(true, testMedia.wasSuccessful());
 	}
 	
 	@Test
 	public void testPlayImageOnly() {
-		testMedia.playImage("search");
+		try {
+			testMedia.playImage("search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		assertEquals(true, testMedia.wasSuccessful());
 	}
 	
 	@Test
 	public void testPlayLaughVideo() {
-		testMedia.playVideo("laugh");
+		try {
+			testMedia.playVideo("laugh");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		assertEquals(true, testMedia.wasSuccessful());
 	}
 	
 	@Test
 	public void testPlayVideoForSearching() {
-		testMedia.playVideo("search");
+		try {
+			testMedia.playVideo("search");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		assertEquals(true, testMedia.wasSuccessful());
 	}
 	
 	@Test
 	public void testIfPlayVideoMultipleTimesWillClip() {
-		testMedia.playVideo("search");
-		testMedia.playVideo("goodbye");
+		try {
+			testMedia.playVideo("search");
+			testMedia.playVideo("goodbye");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

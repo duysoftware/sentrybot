@@ -29,7 +29,7 @@ public class RobotTest {
 	
 	@Test 
 	public void testShowImageJustByItSelf() {
-		robot.showImage("heheh");
+		robot.showImage("laugh");
 		assertEquals(true, robot.wasSuccessful());
 	}
 	
@@ -41,7 +41,7 @@ public class RobotTest {
 	
 	@Test
 	public void testForVideosPlayedAfterOneAnother() {
-		robot.playVideo("raiseAlarm");
+		robot.playVideo("raiseAlarm2");
 		robot.playVideo("goodbye");
 		assertEquals(true, robot.wasSuccessful());
 	}
