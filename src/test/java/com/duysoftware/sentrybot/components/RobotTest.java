@@ -19,7 +19,7 @@ public class RobotTest {
 		robot = new Robot();
 		
 		// Comment out below for full video
-		//robot.setDebugModeOn();
+		robot.setDebugModeOn();
 	} 
 	
 	@Test
