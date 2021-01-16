@@ -14,6 +14,7 @@ public class AI extends AbstractComponent {
 	private Set<String> userInputs;
 	private HashMap<String, Runnable> decisions;
 	private String[] jokeBank;
+	private String[] reminderBank;
 	
 	//=========================================================================
     // Constructor
@@ -34,6 +35,7 @@ public class AI extends AbstractComponent {
 		createAvailableUserInputsSet();
 		createDecisionMap();
 		createJokeBankArray(3);
+		createReminderBankArray(6);
 
 		setSuccessStatus(true);
 	}
@@ -122,6 +124,20 @@ public class AI extends AbstractComponent {
 		}
 	}
 	
+	/**
+	 * Creates an array of fileNames for reminders.
+	 * @param numReminders
+	 */
+	private void createReminderBankArray(int numReminders) {
+		reminderBank = new String[numReminders];
+		
+		int reminderNumber = 0;
+		
+		for (int i = 0; i < reminderBank.length; i++) {
+			reminderBank[i] = "reminder" + reminderNumber++;
+		}
+	}
+	
 	//=========================================================================
     // AI Decision Making and Utilities
 	//=========================================================================
@@ -186,7 +202,11 @@ public class AI extends AbstractComponent {
 	 * A routine to apprehend an intruder.
 	 */
 	public void holdTheLineSubroutine() {
+		int loop = 10;
+		
+		while (loop-- > 0) {
 		playVideo("shallnotpass");
+		}
 	}
 	
 	/**
@@ -304,7 +324,7 @@ public class AI extends AbstractComponent {
 		
 		playVideo("laugh");
 		/**
-		 * while (robot.playSound("watcha") {
+		 * while (playVideo("laugh")) {
 		 * 		[bops its head/body here];
 		 * }
 		 */
@@ -346,5 +366,14 @@ public class AI extends AbstractComponent {
 		update("start", "goodbye");
 		playVideo("goodbye");
 		update("end", "goodbye");
+	}
+	
+	public void reminder() {
+		update ("start", "reminder");
+		
+		Random rand = new Random();
+		playSound(reminderBank[rand.nextInt(reminderBank.length)]);
+		
+		update("end", "reminder");
 	}
 }
