@@ -56,4 +56,9 @@ public class AITest {
 		assertEquals(true, testAI.wasSuccessful());
 	}
 	
+	@Test
+	public void testReminderSeeingIfItCyclesThroughTheBank() {
+		testAI.parse("joke");
+		assertEquals(true, testAI.wasSuccessful());
+	}
 }

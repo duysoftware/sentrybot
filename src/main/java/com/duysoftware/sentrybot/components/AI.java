@@ -102,6 +102,7 @@ public class AI extends AbstractComponent {
 		decisions.put("insult", () -> insult()); 
 		decisions.put("kiss", () -> kiss());
 		decisions.put("goodbye", () -> goodbye());
+		decisions.put("reminder", () -> reminder());
 		
 		// user input buttons
 		decisions.put("alarmOff", () -> alarmOff());
@@ -126,7 +127,7 @@ public class AI extends AbstractComponent {
 	
 	/**
 	 * Creates an array of fileNames for reminders.
-	 * @param numReminders
+	 * @param numReminders number of reminder fileNames to create.
 	 */
 	private void createReminderBankArray(int numReminders) {
 		reminderBank = new String[numReminders];
@@ -320,7 +321,7 @@ public class AI extends AbstractComponent {
 		update("start", "joke");
 		
 		Random rand = new Random();
-		playSound(jokeBank[rand.nextInt(jokeBank.length)]);
+		playVideo(jokeBank[rand.nextInt(jokeBank.length)]);
 		
 		playVideo("laugh");
 		/**
@@ -372,7 +373,7 @@ public class AI extends AbstractComponent {
 		update ("start", "reminder");
 		
 		Random rand = new Random();
-		playSound(reminderBank[rand.nextInt(reminderBank.length)]);
+		playVideo(reminderBank[rand.nextInt(reminderBank.length)]);
 		
 		update("end", "reminder");
 	}
