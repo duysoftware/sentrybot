@@ -19,8 +19,9 @@ public class Main {
 		Robot spiderBot = new Robot();
 		AI ai = new AI(spiderBot);
 		
-		// creates the stand alone SoundSensor, can't connect to robot for ease
-		// of development in non-Raspberry Pi environments.
+		/*  Creates the stand alone SoundSensor, can't connect to robot for ease
+		 *  of development in non-Raspberry Pi environments.
+		 */
 		SoundSensor sensor = new SoundSensor(RaspiPin.GPIO_02);
 		
 		//=====================================================================
@@ -33,10 +34,13 @@ public class Main {
 		//=====================================================================
 		// Main
 		//=====================================================================
-		boolean onButton = true;
 		System.out.println("Awaiting command...");
+		boolean onButton = true;
 		
+		/* Thread stuff */
 		inputThread.start();
+		
+		/* main process */
 		while (onButton == true) {
 			try {
 				Thread.sleep(500);
@@ -44,7 +48,7 @@ public class Main {
 				e.printStackTrace();
 			}
 			
-			// call on alarm subroutine
+			/* Alarm Trigger */
 			if (ai.onSentryMode() && sensor.querySensors()) {
 				ai.parse("redAlert");
 				sensor.reset();
