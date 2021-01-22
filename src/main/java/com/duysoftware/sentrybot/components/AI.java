@@ -118,7 +118,7 @@ public class AI extends AbstractComponent {
 	private void createJokeBankArray(int numJokes) {
 		jokeBank = new String[numJokes];
 		
-		int jokeNumber = 0;
+		int jokeNumber = 1;
 		
 		for (int i = 0; i < jokeBank.length; i++) {
 			jokeBank[i] = "joke" + jokeNumber++;
