@@ -46,14 +46,6 @@ public class Main {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
-			/* Alarm Trigger 
-			if (ai.onSentryMode() && sensor.querySensors()) {
-				ai.parse("redAlert");
-				sensor.reset();
-				System.out.println("Awaiting next command...");
-			}
-			*/
 		}
 	}
 }

@@ -7,5 +7,11 @@ package com.duysoftware.sentrybot.components;
  *
  */
 public interface IListener {
+	
+	/**
+	 * Notifying the listeners/observers will call this method.
+	 * Update will usually call methods from classes that was waiting on the
+	 * listener.
+	 */
 	public void update();
 }
