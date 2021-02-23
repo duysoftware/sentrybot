@@ -21,7 +21,7 @@ public class SoundSensorTest {
 		if (System.getProperty("os.name").equals("Linux")) {
 			testSensors = new SoundSensor(RaspiPin.GPIO_02);
 		} else {
-			System.out.println("Don't run these tests on windows or if the bot is not connected.");
+			System.out.println("SoundSensor tests won't fully run on windows or if the bot is not connected.");
 			System.out.println("If this is the bot's OS, uncomment the code below.");
 			
 			// testSensors = new SoundSensor(RaspiPin.GPIO_02);

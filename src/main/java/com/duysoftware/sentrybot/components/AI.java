@@ -3,14 +3,20 @@ package com.duysoftware.sentrybot.components;
 import java.util.*;
 
 public class AI extends AbstractComponent {
+	/* Main frame */
 	private Robot robot;
 	
+	/* Listeners/Observers that the AI uses for monitoring sensors */
+	private IListener soundListener;
+	
+	/* Various AI states */
 	private boolean sentryMode;
 	private boolean busy;
 	private boolean searching;
 	private boolean alarmOn;
 	private String status;
 	
+	/* Data Structures that store various commands */
 	private Set<String> userInputs;
 	private HashMap<String, Runnable> decisions;
 	private String[] jokeBank;
@@ -25,6 +31,8 @@ public class AI extends AbstractComponent {
 	public AI(Robot robot) {
 		super();
 		this.robot = robot;
+		
+		soundListener = new SoundSensorListener(this);
 		
 		this.sentryMode = true;
 		this.busy = false;
@@ -73,6 +81,10 @@ public class AI extends AbstractComponent {
 	 */
 	public String getStatus() {
 		return status;
+	}
+	
+	public IListener getSoundListener() {
+		return soundListener;
 	}
 	
 	//=========================================================================
@@ -190,6 +202,7 @@ public class AI extends AbstractComponent {
 		while (alarmOn && loop-- > 0) {
 			raiseAlarm();	
 		}
+		alarmOn = false;
 	}
 	
 	/**

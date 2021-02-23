@@ -19,10 +19,9 @@ public class Main {
 		Robot spiderBot = new Robot();
 		AI ai = new AI(spiderBot);
 		
-		/*  Creates the stand alone SoundSensor, can't connect to robot for ease
-		 *  of development in non-Raspberry Pi environments.
-		 */
+		/*  Creates the SoundSensor and adds a listener from the ai to it. */
 		SoundSensor sensor = new SoundSensor(RaspiPin.GPIO_02);
+		sensor.addListener(ai.getSoundListener());
 		
 		//=====================================================================
 		// Thread for User Input
@@ -48,12 +47,13 @@ public class Main {
 				e.printStackTrace();
 			}
 			
-			/* Alarm Trigger */
+			/* Alarm Trigger 
 			if (ai.onSentryMode() && sensor.querySensors()) {
 				ai.parse("redAlert");
 				sensor.reset();
 				System.out.println("Awaiting next command...");
 			}
+			*/
 		}
 	}
 }

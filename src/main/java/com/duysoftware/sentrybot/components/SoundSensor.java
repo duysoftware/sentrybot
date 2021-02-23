@@ -16,8 +16,6 @@ public final class SoundSensor extends AbstractComponent {
 	final private GpioController gpio;
 	final private GpioPinDigitalInput input;
 	
-	private boolean detected;
-	
 	//=========================================================================
 	// Constructors
 	//=========================================================================
@@ -36,39 +34,15 @@ public final class SoundSensor extends AbstractComponent {
 		this.input = gpio.provisionDigitalInputPin(pin, PinPullResistance.PULL_DOWN);
 		
 		input.setShutdownOptions(true);
-		
-		 // create and register gpio pin listener
-        input.addListener(new GpioPinListenerDigital() {
-            @Override
-            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                // display pin state on console
-                System.out.println(" --> GPIO PIN STATE CHANGE: " + event.getPin() + " = " + event.getState());
-                if (event.getState().isHigh()) {
-                	detected = true;
-                }        
-            }
-        });
         
-		detected = false;
 		setSuccessStatus(true);
 	}
 	
 	//=========================================================================
 	// Methods
 	//=========================================================================
-	/**
-	 * Changes the detected variable back to false;
-	 */
-	public void reset() {
-		detected = false;
-	}
 	
-	/**
-	 * Checks the state of the sensors to see if it detected anything.
-	 * 
-	 * @return true if sensor has detected something.
-	 */
-	public boolean querySensors() {
-		return detected;
+	public void addListener(IListener listener) {
+		input.addListener((SoundSensorListener) listener);
 	}
 }
