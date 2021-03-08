@@ -12,6 +12,12 @@ import com.pi4j.io.gpio.RaspiPin;
 public class Main {
 	public static void main(String[] args) {
 		//===================================================================== 
+		// User Configs - Feel free to change!
+		//=====================================================================
+		Configs.setScreenSize(800, 480); // Default = (800, 480)
+		Configs.setToCleanVersion(false); // Default = false;
+		
+		//===================================================================== 
 		// Robot and AI Initialization
 		//=====================================================================
 		System.out.println("Starting main program...");

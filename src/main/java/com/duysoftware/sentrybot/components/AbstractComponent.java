@@ -55,5 +55,5 @@ public abstract class AbstractComponent {
 	 */
 	public void setDebugModeOn() {
 		debugModeOn = true;
-	}
+	}	
 }

@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import com.duysoftware.sentrybot.Configs;
+
 /**
  * 
  * @author Duy N
@@ -18,7 +20,8 @@ import javax.swing.JLabel;
  */
 public class MediaPlayer extends AbstractComponent {
 	private static String path = "src/main/java/com/duysoftware/sentrybot/media/";
-	
+	private static String cleanPath = "src/main/java/com/duysoftware/sentrybot/media/clean/";
+	private static String uncleanPath = "src/main/java/com/duysoftware/sentrybot/media/unclean/";
 	private boolean loop;
 	
 	//=========================================================================
@@ -29,6 +32,10 @@ public class MediaPlayer extends AbstractComponent {
 	 */
 	public MediaPlayer() {
 		super();
+		
+		/* Sets path to use either clean or unclean videos based on configs */
+		path = Configs.cleanVersion ? cleanPath : uncleanPath;
+		
 		this.loop = false;
 		setSuccessStatus(true);
 	}
@@ -36,8 +43,8 @@ public class MediaPlayer extends AbstractComponent {
 	//=========================================================================
 	// Accessors
 	//=========================================================================	
-	public void setLoop(boolean val) {
-		loop = val;
+	public void setLoop(boolean b) {
+		loop = b;
 	}
 	
 	public boolean isLooping() {
@@ -56,7 +63,8 @@ public class MediaPlayer extends AbstractComponent {
 	 */
 	public void playVideo(String fileName, 
 						  boolean showImage, 
-						  boolean allowSound) throws Exception {		
+						  boolean allowSound) throws Exception {
+		
 		setSuccessStatus(false);
 		System.out.println("PLAYING " + fileName);
 		
@@ -69,7 +77,7 @@ public class MediaPlayer extends AbstractComponent {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(label);
         frame.pack();
-        frame.setSize(800, 480);
+        frame.setSize(Configs.screenWidth, Configs.screenHeight);
         frame.setLocationRelativeTo(null);
 
         /* Sound Loading Portion */
