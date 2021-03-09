@@ -3,41 +3,40 @@ package com.duysoftware.sentrybot.components;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
+
 /**
- * Implements the IListener and GpioPinListenerDigital interface.
+ * Implements the Listener and GpioPinListenerDigital interface.
  * This Listener is attached to the AI and notifies it when the SoundSensor changes state.
  * @author Duy N
  * @author Jack T
  *
  */
-public final class SoundSensorListener implements IListener, GpioPinListenerDigital {
+public class SensorListener implements Listener, GpioPinListenerDigital {
 	private AI ai;
 	
-	public SoundSensorListener(AI ai) {
+	public SensorListener(AI ai) {
 		this.ai = ai;
 	}
 	
 	//=========================================================================
-	// Methods
+    // Setters and Getters
 	//=========================================================================
-	
-	/**
-	 * Tells the AI to raise its alarm if its not already on.
-	 */
-	public void update() {
-		if (!ai.isAlarmOn()) {
-			ai.parse("redAlert");
-		}
+	public void setAI(AI ai) {
+		this.ai = ai;
 	}
-
-	/**
-	 * This method will call on update when the pin in the raspberry pi reaches a "HIGH" state.
-	 */
+	
+	//=========================================================================
+    // Functional Methods
+	//=========================================================================
+	@Override
+	public void update() {
+		ai.alertAi();
+	}
+	
 	@Override
 	public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
 		if (event.getState().isHigh()) {
 			update();
 		}
 	}
-
 }

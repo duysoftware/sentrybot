@@ -42,7 +42,7 @@ public final class SoundSensor extends AbstractComponent {
 	// Methods
 	//=========================================================================
 	
-	public void addListener(IListener listener) {
-		input.addListener((SoundSensorListener) listener);
+	public void addSensorListener(SensorListener listener) {
+		input.addListener(listener);
 	}
 }

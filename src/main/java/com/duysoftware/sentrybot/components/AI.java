@@ -6,9 +6,6 @@ public class AI extends AbstractComponent {
 	/* Main frame */
 	private Robot robot;
 	
-	/* Listeners/Observers that the AI uses for monitoring sensors */
-	private IListener soundListener;
-	
 	/* Various AI states */
 	private boolean sentryMode;
 	private boolean busy;
@@ -31,8 +28,6 @@ public class AI extends AbstractComponent {
 	public AI(Robot robot) {
 		super();
 		this.robot = robot;
-		
-		soundListener = new SoundSensorListener(this);
 		
 		this.sentryMode = true;
 		this.busy = false;
@@ -81,10 +76,6 @@ public class AI extends AbstractComponent {
 	 */
 	public String getStatus() {
 		return status;
-	}
-	
-	public IListener getSoundListener() {
-		return soundListener;
 	}
 	
 	//=========================================================================
@@ -187,6 +178,15 @@ public class AI extends AbstractComponent {
 		}
 		
 		System.out.println(this.status);
+	}
+	
+	/**
+	 * Called by sensor listeners to ping the ai to raise the alarm.
+	 */
+	public void alertAi() {
+		if (!isAlarmOn()) {
+			raiseAlarm();
+		}
 	}
 	
 	//=========================================================================

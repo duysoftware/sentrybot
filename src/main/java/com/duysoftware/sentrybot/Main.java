@@ -14,8 +14,10 @@ public class Main {
 		//===================================================================== 
 		// User Configs - Feel free to change!
 		//=====================================================================
-		Configs.setScreenSize(800, 480); // Default = (800, 480)
-		Configs.setToCleanVersion(false); // Default = false;
+		Configs.setScreenSize(800, 480); 		  // Default = (800, 480)
+		Configs.setToCleanVersion(false); 		  // Default = false;
+		Configs.setSoundPin(RaspiPin.GPIO_02);	  // Default = RaspiPin.GPIO_02
+		Configs.setInfraredPin(RaspiPin.GPIO_03); // Default = RaspiPin.GPIO_03
 		
 		//===================================================================== 
 		// Robot and AI Initialization
@@ -26,8 +28,8 @@ public class Main {
 		AI ai = new AI(spiderBot);
 		
 		/*  Creates the SoundSensor and adds a listener from the ai to it. */
-		SoundSensor sensor = new SoundSensor(RaspiPin.GPIO_02);
-		sensor.addListener(ai.getSoundListener());
+		SoundSensor sensor = new SoundSensor(Configs.soundSensorPin);
+		sensor.addSensorListener(new SensorListener(ai));
 		
 		//=====================================================================
 		// Thread for User Input
