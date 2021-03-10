@@ -13,7 +13,7 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
  *
  */
 public final class Sensor extends AbstractComponent {
-	final private GpioController gpio;
+	final private static GpioController gpio = GpioFactory.getInstance();
 	final private GpioPinDigitalInput input;
 	
 	//=========================================================================
@@ -27,9 +27,6 @@ public final class Sensor extends AbstractComponent {
 	 */
 	public Sensor(Pin pin) {
 		super();
-		
-		// creates an instance of the gpio controller
-		this.gpio = GpioFactory.getInstance();
 		
 		// makes the digital input pin with the given pinNumber
 		this.input = gpio.provisionDigitalInputPin(pin, PinPullResistance.PULL_DOWN);

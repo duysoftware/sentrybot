@@ -20,7 +20,6 @@ public class SentryBot extends AbstractComponent {
 	//=========================================================================
 	// Constructors
 	//=========================================================================
-	
 	public SentryBot() {
 		super();
 		
