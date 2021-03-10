@@ -12,7 +12,7 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
  * @author Jack T
  *
  */
-public final class SoundSensor extends AbstractComponent {
+public final class Sensor extends AbstractComponent {
 	final private GpioController gpio;
 	final private GpioPinDigitalInput input;
 	
@@ -25,8 +25,9 @@ public final class SoundSensor extends AbstractComponent {
 	 * @param pin - default is RaspiPin.GPIO_02. Check the Raspberry Pi 3 IO
 	 * chart to see which pin the sound sensor is connected to.
 	 */
-	public SoundSensor(Pin pin) {
+	public Sensor(Pin pin) {
 		super();
+		
 		// creates an instance of the gpio controller
 		this.gpio = GpioFactory.getInstance();
 		
@@ -41,8 +42,7 @@ public final class SoundSensor extends AbstractComponent {
 	//=========================================================================
 	// Methods
 	//=========================================================================
-	
-	public void addSensorListener(SensorListener listener) {
+	public void addListener(SensorListener listener) {
 		input.addListener(listener);
 	}
 }

@@ -13,13 +13,13 @@ import com.pi4j.io.gpio.RaspiPin;
  * @author Jack T
  *
  */
-public class SoundSensorTest {
-	SoundSensor testSensors;
+public class SensorTest {
+	Sensor testSensors;
 	
 	@Before
     public void init() {
 		if (System.getProperty("os.name").equals("Linux")) {
-			testSensors = new SoundSensor(RaspiPin.GPIO_02);
+			testSensors = new Sensor(RaspiPin.GPIO_02);
 		} else {
 			System.out.println("SoundSensor tests won't fully run on windows or if the bot is not connected.");
 			

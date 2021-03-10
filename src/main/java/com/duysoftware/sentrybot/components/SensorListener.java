@@ -13,9 +13,11 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
  */
 public class SensorListener implements Listener, GpioPinListenerDigital {
 	private AI ai;
+	private SensorID sensorId;
 	
-	public SensorListener(AI ai) {
+	public SensorListener(AI ai, SensorID id) {
 		this.ai = ai;
+		this.sensorId = id;
 	}
 	
 	//=========================================================================
@@ -30,7 +32,7 @@ public class SensorListener implements Listener, GpioPinListenerDigital {
 	//=========================================================================
 	@Override
 	public void update() {
-		ai.alertAi();
+		ai.alertAi(sensorId);
 	}
 	
 	@Override

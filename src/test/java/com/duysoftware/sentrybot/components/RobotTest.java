@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.pi4j.io.gpio.RaspiPin;
+
 /**
  * Unit test for the robot frame. 
  * @author Duy N
@@ -12,12 +14,11 @@ import org.junit.Test;
  *
  */
 public class RobotTest {
-	Robot robot;
+	SentryBot robot;
 	
 	@Before
     public void init() {
-		robot = new Robot();
-		
+		robot = new SentryBot();
 		// Comment out below for full video
 		robot.setDebugModeOn();
 	} 

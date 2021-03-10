@@ -13,8 +13,9 @@ public class Configs {
 	/* cleanVersion = false will allow bot to use more meme videos for its actions. */
 	public static boolean cleanVersion = false;
 	
-	public static Pin soundSensorPin = RaspiPin.GPIO_02;
-	public static Pin infraredSensorPin = RaspiPin.GPIO_03;
+	public static Pin soundSensorPin1 = RaspiPin.GPIO_02;
+	public static Pin infraredSensorPin1 = RaspiPin.GPIO_03;
+	public static Pin infraredSensorPin2 = RaspiPin.GPIO_04;
 	
 	//=========================================================================
     // Setters and Getters
@@ -43,16 +44,24 @@ public class Configs {
 	 * Sets the soundSensorPin to p;
 	 * @param p Use Raspi.GPIO_02 or wherever you plugged in the sensor.
 	 */
-	public static void setSoundPin(Pin p) {
-		Configs.soundSensorPin = p;
+	public static void setSoundPin1(Pin p) {
+		Configs.soundSensorPin1 = p;
 	}
 	
 	/**
-	 * Sets the infraredSensorPin to p;
+	 * Sets the infraredSensorPin1 to p;
 	 * @param p Use Raspi.GPIO_03 orr wherever you plugged in the sensor.
 	 */
-	public static void setInfraredPin(Pin p) {
-		Configs.infraredSensorPin = p;
+	public static void setInfraredPin1(Pin p) {
+		Configs.infraredSensorPin1 = p;
+	}
+	
+	/**
+	 * Sets the infraredSensorPin2 to p;
+	 * @param p Use Raspi.GPIO_04 orr wherever you plugged in the sensor.
+	 */
+	public static void setInfraredPin2(Pin p) {
+		Configs.infraredSensorPin2 = p;
 	}
 	
 }

@@ -15,7 +15,7 @@ public abstract class AbstractComponent {
 	// Constructors
 	//=========================================================================
 	/**
-	 * Sets variables successful, debugModeOn to: false.
+	 * Sets successful and debugModeOn to false.
 	 */
 	protected AbstractComponent() {
 		this.successful = false;

@@ -12,30 +12,27 @@ import com.pi4j.io.gpio.RaspiPin;
 public class Main {
 	public static void main(String[] args) {
 		//===================================================================== 
-		// User Configs - Feel free to change!
+		// User Configurations - Feel free to change!
 		//=====================================================================
+		System.out.println("Loading configurations...");
 		Configs.setScreenSize(800, 480); 		  // Default = (800, 480)
 		Configs.setToCleanVersion(false); 		  // Default = false;
-		Configs.setSoundPin(RaspiPin.GPIO_02);	  // Default = RaspiPin.GPIO_02
-		Configs.setInfraredPin(RaspiPin.GPIO_03); // Default = RaspiPin.GPIO_03
+		
+		Configs.setSoundPin1(RaspiPin.GPIO_02);	  // Default = RaspiPin.GPIO_02
+		Configs.setInfraredPin1(RaspiPin.GPIO_03); // Default = RaspiPin.GPIO_03
+		Configs.setInfraredPin2(RaspiPin.GPIO_04); // Default = RaspiPin.GPIO_04
 		
 		//===================================================================== 
-		// Robot and AI Initialization
+		// Robot, AI, and Sensor Initializations
 		//=====================================================================
-		System.out.println("Starting main program...");
-		System.out.println("Loading AI...");
-		Robot spiderBot = new Robot();
-		AI ai = new AI(spiderBot);
-		
-		/*  Creates the SoundSensor and adds a listener from the ai to it. */
-		SoundSensor sensor = new SoundSensor(Configs.soundSensorPin);
-		sensor.addSensorListener(new SensorListener(ai));
-		
+		System.out.println("Loading Bot...");
+		SentryBot sentryBot = new SentryBot();
+
 		//=====================================================================
 		// Thread for User Input
 		//=====================================================================
 		System.out.println("Loading User Input Thread...");
-		InputRunnable inputRunnable = new InputRunnable(ai);
+		InputRunnable inputRunnable = new InputRunnable(sentryBot.getAI());
 		Thread inputThread = new Thread(inputRunnable);
 		
 		//=====================================================================

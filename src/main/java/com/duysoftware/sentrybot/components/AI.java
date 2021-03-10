@@ -4,7 +4,7 @@ import java.util.*;
 
 public class AI extends AbstractComponent {
 	/* Main frame */
-	private Robot robot;
+	private SentryBot robot;
 	
 	/* Various AI states */
 	private boolean sentryMode;
@@ -25,7 +25,7 @@ public class AI extends AbstractComponent {
 	/**
 	 * Forms a new AI unit and connects it to some robotic framework.
 	 */
-	public AI(Robot robot) {
+	public AI(SentryBot robot) {
 		super();
 		this.robot = robot;
 		
@@ -181,11 +181,13 @@ public class AI extends AbstractComponent {
 	}
 	
 	/**
-	 * Called by sensor listeners to ping the ai to raise the alarm.
+	 * Called by sensor listeners to ping the ai to raise the alarm. Depending on which sensors
+	 * called, ai will raise the alarm.
 	 */
-	public void alertAi() {
+	public void alertAi(SensorID fromSensor) {
 		if (!isAlarmOn()) {
 			raiseAlarm();
+			// TODO make it so that ai have different actions based on id
 		}
 	}
 	

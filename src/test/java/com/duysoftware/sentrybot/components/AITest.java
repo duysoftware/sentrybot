@@ -9,13 +9,13 @@ import com.duysoftware.sentrybot.threads.StopActionsRunnable;
 
 public class AITest {
 
-	Robot robot;
+	SentryBot robot;
 	AI testAI;
 
 	@Before
     public void init() {
-		robot = new Robot();
-		testAI = new AI(robot);
+		robot = new SentryBot();
+		testAI = robot.getAI();
 		
 		// Comment out below line if you need to hear the audio
 		robot.setDebugModeOn();

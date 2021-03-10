@@ -1,21 +1,55 @@
 package com.duysoftware.sentrybot.components;
 
+import com.duysoftware.sentrybot.Configs;
+
 /**
  * The frame of the robot. This class controls the components that are attached to it. 
  * @author Duy N
  * @author Jack T
  *
  */
-public class Robot extends AbstractComponent {
+public class SentryBot extends AbstractComponent {
+	
+	private AI ai;
 	private MediaPlayer mediaPlayer;
+	
+	private Sensor soundSensor01;
+	private Sensor infraredSensor01;
+	private Sensor infraredSensor02;
 	
 	//=========================================================================
 	// Constructors
 	//=========================================================================
-	public Robot() {
+	
+	public SentryBot() {
 		super();
+		
+		this.ai = new AI(this);
 		this.mediaPlayer = new MediaPlayer();
+		
+		// Loading these sensors require the Pi libraries
+		if (System.getProperty("os.name").equals("Linux")) {
+			this.soundSensor01 = new Sensor(Configs.soundSensorPin1);
+			this.infraredSensor01 = new Sensor(Configs.infraredSensorPin1);
+			this.infraredSensor02 = new Sensor(Configs.infraredSensorPin2);
+			
+			soundSensor01.addListener(new SensorListener(ai, SensorID.Sound01));
+			infraredSensor01.addListener(new SensorListener(ai, SensorID.Infra01));
+			infraredSensor02.addListener(new SensorListener(ai, SensorID.Infra02));
+		} 
+		
 		setSuccessStatus(true);
+	}
+	
+	//=========================================================================
+	// Setters and Getters
+	//=========================================================================
+	/**
+	 * Returns this bot's AI
+	 * @return
+	 */
+	public AI getAI() {
+		return ai;
 	}
 	
 	//=========================================================================
