@@ -13,7 +13,7 @@ import com.pi4j.io.gpio.RaspiPin;
  * @author Jack T
  *
  */
-public class RobotTest {
+public class SentryBotTest {
 	SentryBot robot;
 	
 	@Before
