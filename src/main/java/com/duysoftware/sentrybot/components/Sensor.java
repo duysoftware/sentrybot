@@ -14,7 +14,7 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
  */
 public final class Sensor extends AbstractComponent {
 	final private static GpioController gpio = GpioFactory.getInstance();
-	final private GpioPinDigitalInput input;
+	private GpioPinDigitalInput input;
 	
 	//=========================================================================
 	// Constructors
@@ -26,14 +26,17 @@ public final class Sensor extends AbstractComponent {
 	 * chart to see which pin the sound sensor is connected to.
 	 */
 	public Sensor(Pin pin) {
-		super();
-		
+		super();		
 		System.out.println("Trying to provision pin: " + pin.getName());
+		
 		// makes the digital input pin with the given pinNumber
-		this.input = gpio.provisionDigitalInputPin(pin, PinPullResistance.PULL_DOWN);
+		input = (GpioPinDigitalInput) gpio.getProvisionedPin(pin);
+		
+		if (input == null) {
+			input = gpio.provisionDigitalInputPin(pin, PinPullResistance.PULL_DOWN);
+		}
 		
 		input.setShutdownOptions(true);
-
 		setSuccessStatus(true);
 	}
 	
