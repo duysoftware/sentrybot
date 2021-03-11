@@ -18,6 +18,7 @@ public class SentryBotTest {
 	
 	@Before
     public void init() {
+		System.out.println("Running SentryBotTest...");
 		robot = new SentryBot();
 		// Comment out below for full video
 		robot.setDebugModeOn();

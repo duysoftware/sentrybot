@@ -14,6 +14,7 @@ public class AITest {
 
 	@Before
     public void init() {
+		System.out.println("Running AITest...");
 		robot = new SentryBot();
 		testAI = robot.getAI();
 		

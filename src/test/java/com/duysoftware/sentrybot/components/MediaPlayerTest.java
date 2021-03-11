@@ -11,6 +11,7 @@ public class MediaPlayerTest {
 	
 	@Before
 	public void init() {
+		System.out.println("Running MediaPlayerTest...");
 		testMedia = new MediaPlayer();
 		
 		/* Comment out below if you want the full videos */

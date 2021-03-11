@@ -18,6 +18,7 @@ public class SensorTest {
 	
 	@Before
     public void init() {
+		System.out.println("Running SensorTest...");
 		if (System.getProperty("os.name").equals("Linux")) {
 			testSensors = new Sensor(RaspiPin.GPIO_02);
 		} else {
