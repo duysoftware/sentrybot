@@ -16,7 +16,6 @@ public class SentryBot extends AbstractComponent {
 	
 	private Sensor soundSensor01;
 	private Sensor infraredSensor01;
-	private Sensor infraredSensor02;
 	
 	//=========================================================================
 	// Constructors
@@ -31,11 +30,9 @@ public class SentryBot extends AbstractComponent {
 		if (System.getProperty("os.name").equals("Linux")) {
 			this.soundSensor01 = new Sensor(RaspiPin.GPIO_02);
 			this.infraredSensor01 = new Sensor(RaspiPin.GPIO_03);
-			this.infraredSensor02 = new Sensor(RaspiPin.GPIO_04);
 			
 			soundSensor01.addListener(new SensorListener(ai, SensorID.Sound01));
 			infraredSensor01.addListener(new SensorListener(ai, SensorID.Infra01));
-			infraredSensor02.addListener(new SensorListener(ai, SensorID.Infra02));
 		} 
 		
 		setSuccessStatus(true);

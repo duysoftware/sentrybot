@@ -185,7 +185,7 @@ public class AI extends AbstractComponent {
 	 * called, ai will raise the alarm.
 	 */
 	public void alertAi(SensorID fromSensor) {
-		if (!isAlarmOn()) {
+		if (!isAlarmOn() && fromSensor == SensorID.Sound01) {
 			raiseAlarm();
 			// TODO make it so that ai have different actions based on id
 		}
