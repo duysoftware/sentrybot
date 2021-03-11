@@ -18,10 +18,6 @@ public class Main {
 		Configs.setScreenSize(800, 480); 		  // Default = (800, 480)
 		Configs.setToCleanVersion(false); 		  // Default = false;
 		
-		Configs.setSoundPin1(RaspiPin.GPIO_02);	  // Default = RaspiPin.GPIO_02
-		Configs.setInfraredPin1(RaspiPin.GPIO_03); // Default = RaspiPin.GPIO_03
-		Configs.setInfraredPin2(RaspiPin.GPIO_04); // Default = RaspiPin.GPIO_04
-		
 		//===================================================================== 
 		// Robot, AI, and Sensor Initializations
 		//=====================================================================

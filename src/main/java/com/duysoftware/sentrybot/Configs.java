@@ -38,30 +38,5 @@ public class Configs {
 	 */
 	public static void setToCleanVersion(boolean b) {
 		Configs.cleanVersion = b;
-	}
-	
-	/**
-	 * Sets the soundSensorPin to p;
-	 * @param p Use Raspi.GPIO_02 or wherever you plugged in the sensor.
-	 */
-	public static void setSoundPin1(Pin p) {
-		Configs.soundSensorPin1 = p;
-	}
-	
-	/**
-	 * Sets the infraredSensorPin1 to p;
-	 * @param p Use Raspi.GPIO_03 orr wherever you plugged in the sensor.
-	 */
-	public static void setInfraredPin1(Pin p) {
-		Configs.infraredSensorPin1 = p;
-	}
-	
-	/**
-	 * Sets the infraredSensorPin2 to p;
-	 * @param p Use Raspi.GPIO_04 orr wherever you plugged in the sensor.
-	 */
-	public static void setInfraredPin2(Pin p) {
-		Configs.infraredSensorPin2 = p;
-	}
-	
+	}	
 }

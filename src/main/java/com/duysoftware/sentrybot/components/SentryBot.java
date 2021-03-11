@@ -1,6 +1,7 @@
 package com.duysoftware.sentrybot.components;
 
 import com.duysoftware.sentrybot.Configs;
+import com.pi4j.io.gpio.RaspiPin;
 
 /**
  * The frame of the robot. This class controls the components that are attached to it. 
@@ -28,9 +29,9 @@ public class SentryBot extends AbstractComponent {
 		
 		// Loading these sensors require the Pi libraries
 		if (System.getProperty("os.name").equals("Linux")) {
-			this.soundSensor01 = new Sensor(Configs.soundSensorPin1);
-			this.infraredSensor01 = new Sensor(Configs.infraredSensorPin1);
-			this.infraredSensor02 = new Sensor(Configs.infraredSensorPin2);
+			this.soundSensor01 = new Sensor(RaspiPin.GPIO_02);
+			this.infraredSensor01 = new Sensor(RaspiPin.GPIO_03);
+			this.infraredSensor02 = new Sensor(RaspiPin.GPIO_04);
 			
 			soundSensor01.addListener(new SensorListener(ai, SensorID.Sound01));
 			infraredSensor01.addListener(new SensorListener(ai, SensorID.Infra01));

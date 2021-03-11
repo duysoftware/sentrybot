@@ -31,10 +31,9 @@ public final class Sensor extends AbstractComponent {
 		System.out.println("Trying to provision pin: " + pin.getName());
 		// makes the digital input pin with the given pinNumber
 		this.input = gpio.provisionDigitalInputPin(pin, PinPullResistance.PULL_DOWN);
-
 		
 		input.setShutdownOptions(true);
-        
+
 		setSuccessStatus(true);
 	}
 	
