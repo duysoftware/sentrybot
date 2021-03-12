@@ -187,7 +187,8 @@ public class AI extends AbstractComponent {
 	public void alertAi(SensorID fromSensor) {
 		if (!isAlarmOn() && fromSensor == SensorID.Sound01) {
 			raiseAlarm();
-			// TODO make it so that ai have different actions based on id
+		} else if (!isAlarmOn() && fromSensor == SensorID.Infra01) {
+			System.out.println("Infrared detects something!");
 		}
 	}
 	

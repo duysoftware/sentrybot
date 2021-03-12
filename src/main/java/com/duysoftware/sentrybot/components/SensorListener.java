@@ -40,10 +40,5 @@ public class SensorListener implements Listener, GpioPinListenerDigital {
 		if (event.getState().isHigh()) {
 			update();
 		}
-		
-		// Delete after infrared works!
-		if (sensorId == SensorID.Infra01) {
-			System.out.println(event.getState().toString());
-		}
 	}
 }

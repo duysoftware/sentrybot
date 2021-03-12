@@ -66,7 +66,6 @@ public class MediaPlayer extends AbstractComponent {
 						  boolean allowSound) throws Exception {
 		
 		setSuccessStatus(false);
-		System.out.println("PLAYING " + fileName);
 		
 		/* Image Loading Portion */
 		File imageFile = new File(path + fileName + ".gif");
@@ -107,7 +106,6 @@ public class MediaPlayer extends AbstractComponent {
 		/* Closing and Cleanup */
 		clip.close();
 		frame.dispose();	
-		System.out.println("Closing " + fileName);
 		setSuccessStatus(true);
 	}
 	
